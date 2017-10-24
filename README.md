@@ -2,7 +2,7 @@
   * Margarito Sánchez
   * Ricardo Escobedo
   * Benjamin Morales
-  * Edgar 
+  * Edgar Flores
 
 ## Descripción:
 Se implementará el cifrado Hill para poder cifrar un texto, con el alfabeto a 26 letras.
