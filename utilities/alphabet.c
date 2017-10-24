@@ -17,7 +17,7 @@ struct node* loadAlphabet(struct node *alpha);
 int main(){
   struct node *alpha = NULL, *searched=NULL;
   alpha = loadAlphabet(alpha);
-  searched = search(alpha, 29, ' ', "key");
+  searched = search(alpha, 23, ' ', "key");
   printf("find key=%d value=%c\n", searched->key, searched->value);
 }
 
@@ -52,18 +52,18 @@ struct node* loadAlphabet(struct node *alpha){
     insert(&alpha, 22, 'W');
     insert(&alpha, 23, 'X');
     insert(&alpha, 24, 'Y');
-    insert(&alpha, 24, 'Z');
-    insert(&alpha, 25, '0');
-    insert(&alpha, 26, '1');
-    insert(&alpha, 27, '2');
-    insert(&alpha, 28, '3');
-    insert(&alpha, 29, '4');
-    insert(&alpha, 30, '5');
-    insert(&alpha, 31, '6');
-    insert(&alpha, 32, '7');
-    insert(&alpha, 33, '8');
-    insert(&alpha, 34, '9');
-    insert(&alpha, 35, ' ');
+    insert(&alpha, 25, 'Z');
+    insert(&alpha, 26, '0');
+    insert(&alpha, 27, '1');
+    insert(&alpha, 28, '2');
+    insert(&alpha, 29, '3');
+    insert(&alpha, 30, '4');
+    insert(&alpha, 31, '5');
+    insert(&alpha, 32, '6');
+    insert(&alpha, 33, '7');
+    insert(&alpha, 34, '8');
+    insert(&alpha, 35, '9');
+    insert(&alpha, 36, ' ');
     return alpha;
 }
 
