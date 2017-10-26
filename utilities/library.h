@@ -9,6 +9,8 @@ struct node{
 };
 
 void insert(struct node **head, int key, char value);
+char* readinput();
+char* removeSpaces(char* input);
 struct node* search(struct node *head, int key, char value, char *searchBy);
 void print(struct node *head);
 struct node* loadAlphabet(struct node *alpha);
