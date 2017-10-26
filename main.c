@@ -1,9 +1,14 @@
 #include <stdio.h>
-#include "utilities/alphabet.c";
+#include "utilities/library.h"
 
-// Implementar un ejemplo
 int main(int argc, char *argv[])
 {
+  struct node *alpha = NULL, *searched=NULL;
+  alpha = loadAlphabet(alpha);
+  printf("Ingrese cadena que quiere cifrar\n");
+  char* cad = readinput();
+  printf("%s\n",cad);
+  // Separar la cadena por n que es 3
 
   return 0;
 }

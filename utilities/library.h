@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,12 +12,40 @@ void insert(struct node **head, int key, char value);
 struct node* search(struct node *head, int key, char value, char *searchBy);
 void print(struct node *head);
 struct node* loadAlphabet(struct node *alpha);
+int* getVectorThatContainsTheModule(int *vector);
+int* multiplyVector(int *vector);
 
-int main(){
-  struct node *alpha = NULL, *searched=NULL;
-  alpha = loadAlphabet(alpha);
-  searched = search(alpha, 23, ' ', "key");
-  printf("find key=%d value=%c\n", searched->key, searched->value);
+
+char* removeSpaces(char* input){
+    int i;
+    char *output = (char*) malloc (strlen(input));
+    char *dest = output;
+
+    if (output)
+    {
+        for (i=0; i<strlen(input); i++)
+            if (input[i] != ' ')
+                *dest++ = input[i];
+
+        *dest = '\0';
+    }
+    return output;
+}
+
+char* readinput(){
+  #define CHUNK 200
+   char* input = NULL;
+   char tempbuf[CHUNK];
+   size_t inputlen = 0, templen = 0;
+   do {
+       fgets(tempbuf, CHUNK, stdin);
+       templen = strlen(tempbuf);
+       inputlen += templen;
+       input = realloc(input, inputlen+1);
+       strcat(input, tempbuf);
+    } while (templen==CHUNK-1 && tempbuf[CHUNK-2]!='\n');
+    input = removeSpaces(input);
+    return input;
 }
 
 /**
@@ -122,3 +149,43 @@ void print(struct node *head){
     head = head->next;
   }
 }
+
+/**
+ * get the requested vector module
+ * @param   vector      pointer to vector
+ * @return  resultVector  pointer to new vector
+ */
+int* getVectorThatContainsTheModule(int *vector) {
+  int numModule = 36;
+  int i;
+  int *resultVector = (int*) calloc(3, sizeof(int));
+
+  for(i=0; i<3; i++) {
+    *(resultVector+i) = *(vector+i) % numModule;
+  }
+
+  return resultVector;
+}
+
+/**
+ * multiply vector by preset matrix
+ * @param   vector      pointer to vector
+ * @return  resultVector  pointer to new vector
+ */
+int* multiplyVector(int *vector) {
+  //Def Matrix
+  int matrix[3][3] = {1,2,3, 0,4,5, 1,0,6};
+  //Reserving memory for new vector
+  int *resultVector = (int*) calloc(3, sizeof(int));
+  int i,j;
+  //Iterating the matrix and multiplying by the vector pointer
+  for(i=0; i<3; i++) {
+    for(j=0; j<3; j++) {
+      *(resultVector + i) += matrix[i][j] * (*(vector + j));
+    }
+  }
+  return resultVector;
+}
+
+
+
