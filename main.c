@@ -12,8 +12,17 @@ int main(int argc, char *argv[])
   int *multVector, *module;
   int i, j, k, count=0;
   alpha = loadAlphabet(alpha);
-  printf("Ingrese cadena que quiere cifrar\n");
-  char* cad = readinput();
+  // printf("Ingrese cadena que quiere cifrar\n");
+  FILE *fptr;
+  char buff[1000];
+  if ((fptr = fopen("./test.txt", "r")) == NULL)
+  {
+      printf("Error! opening file");
+      // Program exits if file pointer returns NULL.
+      exit(1);
+  }
+  // TODO: repetir esto por cada uno de los procesos ejecutados
+  char *cad = readLine(fptr, buff);
   // Separar la cadena por n que es 3
   for (i = 0; i < strlen(cad)-1; i++)
   {
@@ -32,5 +41,6 @@ int main(int argc, char *argv[])
       count=0;
     }
   }
+  fclose(fptr);
   return 0;
 }
