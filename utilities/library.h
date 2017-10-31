@@ -11,18 +11,35 @@ struct node{
 void insert(struct node **head, int key, char value);
 char* readinput();
 char* removeSpaces(char* input);
+char* formatText(char* input);
 struct node* search(struct node *head, int key, char value, char *searchBy);
 void print(struct node *head);
 struct node* loadAlphabet(struct node *alpha);
 int* getVectorThatContainsTheModule(int *vector);
 int* multiplyVector(int *vector);
 
-char* readText(FILE *fptr, char buff[1000]) {
-  if (fgets(buff, 1000, fptr) == NULL){
+char* readText(FILE *fptr, char buff[], int size) {
+  if (fgets(buff, size, fptr) == NULL){
     return NULL;
   }else{
     return buff;
   }
+}
+
+char* formatText(char* input){
+    int i;
+    char *output = (char*) malloc (strlen(input));
+    char *dest = output;
+
+    if (output)
+    {
+        for (i=0; i<strlen(input); i++)
+            if (input[i] != '\n')
+                *dest++ = input[i];
+
+        *dest = '\0';
+    }
+    return output;
 }
 
 char* removeSpaces(char* input){
@@ -33,7 +50,7 @@ char* removeSpaces(char* input){
     if (output)
     {
         for (i=0; i<strlen(input); i++)
-            if (input[i] != ' ' && input[i] != '\n')
+            if (input[i] != ' ' && input[i] != '\n' && input[i] != ',' && input[i] != '.')
                 *dest++ = input[i];
 
         *dest = '\0';
@@ -100,6 +117,8 @@ struct node* loadAlphabet(struct node *alpha){
     insert(&alpha, 34, '8');
     insert(&alpha, 35, '9');
     insert(&alpha, 36, ' ');
+    insert(&alpha, 37, ',');
+    insert(&alpha, 38, '.');
     return alpha;
 }
 
@@ -165,7 +184,7 @@ void print(struct node *head){
  * @return  resultVector  pointer to new vector
  */
 int* getVectorThatContainsTheModule(int *vector) {
-  int numModule = 36;
+  int numModule = 39;
   int i;
   int *resultVector = (int*) calloc(3, sizeof(int));
 
