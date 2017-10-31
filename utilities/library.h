@@ -17,10 +17,12 @@ struct node* loadAlphabet(struct node *alpha);
 int* getVectorThatContainsTheModule(int *vector);
 int* multiplyVector(int *vector);
 
-char* readLine(FILE *fptr, char buff[1000]) {
-  // reads text until newline
-  fscanf(fptr,"%[^\n]", buff);
-  return buff;
+char* readText(FILE *fptr, char buff[1000]) {
+  if (fgets(buff, 1000, fptr) == NULL){
+    return NULL;
+  }else{
+    return buff;
+  }
 }
 
 char* removeSpaces(char* input){
@@ -31,7 +33,7 @@ char* removeSpaces(char* input){
     if (output)
     {
         for (i=0; i<strlen(input); i++)
-            if (input[i] != ' ')
+            if (input[i] != ' ' && input[i] != '\n')
                 *dest++ = input[i];
 
         *dest = '\0';
